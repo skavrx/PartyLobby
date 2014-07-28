@@ -5,11 +5,11 @@
  * Package: project.party.commands
  *
  */
-package project.party.commands;
+package project.party.lobby.commands;
 
-import project.party.commands.CommandFramework.Command;
-import project.party.commands.CommandFramework.CommandArgs;
-import project.party.commands.CommandFramework.CommandListener;
+import project.party.perms.commands.CommandFramework.Command;
+import project.party.perms.commands.CommandFramework.CommandArgs;
+import project.party.perms.commands.CommandFramework.CommandListener;
 
 /**
  * Created: Jul 28, 2014 <br>

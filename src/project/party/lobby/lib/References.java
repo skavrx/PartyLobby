@@ -5,9 +5,9 @@
  * Package: project.party.lib
  *
  */
-package project.party.lib;
+package project.party.lobby.lib;
 
-import project.party.PartyLobbyMain;
+import project.party.lobby.PartyLobbyMain;
 
 /**
  * @author 598Johnn897

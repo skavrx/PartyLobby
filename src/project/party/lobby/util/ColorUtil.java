@@ -5,7 +5,7 @@
  * Package: project.party.util
  *
  */
-package project.party.util;
+package project.party.lobby.util;
 
 import java.util.Iterator;
 import java.util.Map;

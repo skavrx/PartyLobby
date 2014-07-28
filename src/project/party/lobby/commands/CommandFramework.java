@@ -1,4 +1,4 @@
-package project.party.commands;
+package project.party.lobby.commands;
 
 import java.io.File;
 import java.io.IOException;

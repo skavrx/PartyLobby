@@ -1,4 +1,4 @@
-package project.party.util;
+package project.party.lobby.util;
 
 import java.io.BufferedWriter;
 import java.io.File;

@@ -1,4 +1,4 @@
-package project.party.config;
+package project.party.lobby.config;
 
 import java.io.File;
 import java.io.IOException;

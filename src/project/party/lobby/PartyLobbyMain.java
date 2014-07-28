@@ -5,23 +5,17 @@
  * Package: project.party
  *
  */
-package project.party;
+package project.party.lobby;
 
-import static project.party.util.CrashUtil.handleCrash;
+import static project.party.perms.util.CrashUtil.handleCrash;
+import static project.party.perms.util.LogUtil.log;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.util.HashMap;
-import java.util.logging.Level;
-
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import project.party.commands.CommandFramework;
-import project.party.lib.References;
+import project.party.lobby.storage.Storage;
+import project.party.perms.commands.CommandFramework;
+import project.party.perms.lib.References;
 /**
  * @author 598Johnn897
  * 
@@ -40,6 +34,11 @@ public class PartyLobbyMain extends JavaPlugin {
 
 	private CommandFramework framework;
 
+	private Storage storage;
+	public Storage getStorage() {
+		return storage;
+	}
+	
 	private int start;
 	private int end;
 
@@ -48,6 +47,7 @@ public class PartyLobbyMain extends JavaPlugin {
 		try {
 			plugin = this;
 			framework = new CommandFramework(this);
+			storage = new Storage();
 			start = (int) System.currentTimeMillis();
 		} catch (Exception e) {
 			handleCrash(e);
@@ -81,50 +81,4 @@ public class PartyLobbyMain extends JavaPlugin {
 			org.bukkit.command.Command command, String label, String[] args) {
 		return framework.handleCommand(sender, label, command, args);
 	}
-
-	public void log(String msg) {
-		Bukkit.getLogger().log(Level.INFO, ChatColor.stripColor(msg));
-	}
-
-	public void logWarn(String msg) {
-		Bukkit.getLogger().log(Level.WARNING, ChatColor.stripColor(msg));
-	}
-
-	public void logError(String msg) {
-		Bukkit.getLogger().log(Level.SEVERE, ChatColor.stripColor(msg));
-	}
-
-	public static HashMap<File, BufferedWriter> writers = new HashMap<File, BufferedWriter>();
-
-	public BufferedWriter getBufferedWriter(File f) {
-		try {
-			if (writers.containsKey(f)) {
-				return writers.get(f);
-			} else {
-				BufferedWriter returns = new BufferedWriter(new FileWriter(f,
-						true));
-				writers.put(f, returns);
-				return returns;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	public void writeTo(File f, String message) {
-		try {
-			if (!f.exists()) {
-				f.getParentFile().mkdirs();
-				f.createNewFile();
-			}
-			BufferedWriter br = getBufferedWriter(f);
-			br.write(message);
-			br.newLine();
-			br.flush();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 }

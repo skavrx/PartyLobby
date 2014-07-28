@@ -18,4 +18,4 @@
  * 
  * @author 598Johnn897
  */
-package project.party.lib;
+package project.party.lobby.lib;

@@ -18,4 +18,4 @@
  * File: package-info.java
  * Package: project.party.config
  */
-package project.party.config;
+package project.party.lobby.config;

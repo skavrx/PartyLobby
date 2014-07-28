@@ -5,10 +5,10 @@
  * Package: project.party.util
  *
  */
-package project.party.util;
+package project.party.lobby.util;
 
-import static project.party.util.FileUtil.writeTo;
-import static project.party.util.LogUtil.logError;
+import static project.party.perms.util.FileUtil.writeTo;
+import static project.party.perms.util.LogUtil.logError;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,8 +16,8 @@ import java.util.Calendar;
 
 import org.bukkit.Bukkit;
 
-import project.party.PartyLobbyMain;
-import project.party.lib.References;
+import project.party.lobby.PartyLobbyMain;
+import project.party.perms.lib.References;
 
 /**
  * Created: Jul 28, 2014 <br>
