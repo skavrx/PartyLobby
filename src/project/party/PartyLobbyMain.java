@@ -17,8 +17,10 @@ import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import project.party.commands.CommandFramework;
 import project.party.lib.References;
 
 /**
@@ -33,10 +35,11 @@ import project.party.lib.References;
 public class PartyLobbyMain extends JavaPlugin {
 
 	private static PartyLobbyMain plugin;
-
 	public static PartyLobbyMain get() {
 		return plugin;
 	}
+
+	private CommandFramework framework;
 
 	private int start;
 	private int end;
@@ -45,6 +48,7 @@ public class PartyLobbyMain extends JavaPlugin {
 	public void onLoad() {
 		try {
 			plugin = this;
+			framework = new CommandFramework(this);
 			start = (int) System.currentTimeMillis();
 		} catch (Exception e) {
 			handleCrash(e);
@@ -54,29 +58,40 @@ public class PartyLobbyMain extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		try {
-			end = (int) (System.currentTimeMillis() - start);
-			log(" " + References.NAME + " has enabled [" + end + "ms]");
+			framework.registerCommands();
+			framework.registerHelp();
 		} catch (Exception e) {
 			handleCrash(e);
+		} finally {
+			end = (int) (System.currentTimeMillis() - start);
+			log(String.format("%s has enabled. [%d]", References.NAME, end));
 		}
 	}
 
 	@Override
 	public void onDisable() {
 		try {
-			
+
 		} catch (Exception e) {
 			handleCrash(e);
 		}
 	}
 
+	@Override
+	public boolean onCommand(CommandSender sender,
+			org.bukkit.command.Command command, String label, String[] args) {
+		return framework.handleCommand(sender, label, command, args);
+	}
+
 	public void handleCrash(Exception e) {
 		Calendar now = Calendar.getInstance();
+
 		int year = now.get(Calendar.YEAR);
 		int month = now.get(Calendar.MONTH);
 		int day = now.get(Calendar.DAY_OF_MONTH);
 		int hour = now.get(Calendar.HOUR_OF_DAY);
 		int minute = now.get(Calendar.MINUTE);
+
 		File theDir = new File(plugin.getDataFolder().getAbsolutePath());
 		File theOtherDir = new File(plugin.getDataFolder().getAbsolutePath()
 				+ References.CRASH_FOLDER_PATH_EXT);

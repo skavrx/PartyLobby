@@ -481,16 +481,14 @@ public class CommandFramework {
 			}
 			return completions;
 		}
-		
-	    public CommandExecutor getExecutor()
-	    {
-	        return executor;
-	    }
-	    
-	    public void setExecutor(CommandExecutor executor)
-	    {
-	        this.executor = executor;
-	    }
+
+		public CommandExecutor getExecutor() {
+			return executor;
+		}
+
+		public void setExecutor(CommandExecutor executor) {
+			this.executor = executor;
+		}
 
 	}
 
@@ -551,7 +549,8 @@ public class CommandFramework {
 
 		private final CommandSender sender;
 		private final org.bukkit.command.Command command;
-		private final String label;
+		private final String label, description, permission, no_permission,
+				usage, name;
 		private final String[] args;
 
 		protected CommandArgs(CommandSender sender,
@@ -571,6 +570,11 @@ public class CommandFramework {
 			this.command = command;
 			this.label = cmdLabel;
 			this.args = modArgs;
+			this.description = command.getDescription();
+			this.permission = command.getPermission();
+			this.no_permission = command.getPermissionMessage();
+			this.usage = command.getUsage();
+			this.name = command.getName();
 		}
 
 		/**
@@ -612,10 +616,63 @@ public class CommandFramework {
 			return args;
 		}
 
+		/**
+		 * The description of the command
+		 * 
+		 * @return the description
+		 */
+		public String getDescription() {
+			return description;
+		}
+
+		/**
+		 * Permission of the command
+		 * 
+		 * @return the permission
+		 */
+		public String getPermission() {
+			return permission;
+		}
+
+		/**
+		 * No Permission Message of command
+		 * 
+		 * @return the no_permission
+		 */
+		public String getNoPermission() {
+			return no_permission;
+		}
+
+		/**
+		 * Usage of the command
+		 * 
+		 * @return the usage
+		 */
+		public String getUsage() {
+			return usage;
+		}
+
+		/**
+		 * Name of command
+		 * 
+		 * @return the name
+		 */
+		public String getName() {
+			return name;
+		}
+
+		/**
+		 * True if is player command sender
+		 * 
+		 * @return
+		 */
 		public boolean isPlayer() {
 			return sender instanceof Player;
 		}
 
+		/**
+		 * @return Player if commandSender is a player else returns false
+		 */
 		public Player getPlayer() {
 			if (sender instanceof Player) {
 				return (Player) sender;
@@ -627,8 +684,7 @@ public class CommandFramework {
 
 	/**
 	 * CommandFramework - CommandListener <br>
-	 * For a class to use @Command anotation it must
-	 * implement CommandListener
+	 * For a class to use @Command annotation it must implement CommandListener
 	 */
 	public interface CommandListener {
 
@@ -753,7 +809,7 @@ public class CommandFramework {
 			return classes;
 		}
 	}
-	
+
 	public class CommandHandler implements CommandExecutor {
 
 		@Override
