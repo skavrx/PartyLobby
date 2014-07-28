@@ -83,47 +83,6 @@ public class PartyLobbyMain extends JavaPlugin {
 		return framework.handleCommand(sender, label, command, args);
 	}
 
-	public void handleCrash(Exception e) {
-		Calendar now = Calendar.getInstance();
-
-		int year = now.get(Calendar.YEAR);
-		int month = now.get(Calendar.MONTH);
-		int day = now.get(Calendar.DAY_OF_MONTH);
-		int hour = now.get(Calendar.HOUR_OF_DAY);
-		int minute = now.get(Calendar.MINUTE);
-
-		File theDir = new File(plugin.getDataFolder().getAbsolutePath());
-		File theOtherDir = new File(plugin.getDataFolder().getAbsolutePath()
-				+ References.CRASH_FOLDER_PATH_EXT);
-		if (!theDir.exists()) {
-			try {
-				theDir.mkdir();
-				theOtherDir.mkdir();
-			} catch (SecurityException se) {
-				se.printStackTrace();
-			}
-		}
-		File file = new File(plugin.getDataFolder()
-				+ References.CRASH_FOLDER_PATH_EXT, String.format(
-				"crash-%d-%02d-%02d %02d.%02d", year, day, month + 1, hour,
-				minute)
-				+ References.CRASH_FILE_FORMAT);
-		if (!file.exists()) {
-			try {
-				file.createNewFile();
-				writeTo(file,
-						String.format("crash-%d-%02d-%02d %02d.%02d \n", year,
-								day, month + 1, hour, minute) + e.toString());
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
-		}
-		logError(References.NAME
-				+ ": An Error Has Occured During Start Up! Crash Exceptions Can Be Found At: "
-				+ plugin.getDataFolder().getAbsolutePath());
-		Bukkit.getPluginManager().disablePlugin(this);
-	}
-
 	public void log(String msg) {
 		Bukkit.getLogger().log(Level.INFO, ChatColor.stripColor(msg));
 	}
