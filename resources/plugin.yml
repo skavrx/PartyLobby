@@ -1,4 +1,4 @@
 name: PartyLobby
 version: 0.0.1-DEV
-main: project.party.PartyLobbyMain
+main: project.party.lobby.PartyLobbyMain
 author: Johnn

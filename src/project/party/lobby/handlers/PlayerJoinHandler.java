@@ -51,6 +51,8 @@ public class PlayerJoinHandler implements Listener {
 			storage.onlineStrings.add(playerName);
 			storage.onlineUUIDs.add(playerUUID);
 			
+			player.setPlayerListName(playerName);
+			
 		} catch (Exception e) {
 			handleCrash(e);
 		}
