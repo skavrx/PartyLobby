@@ -69,7 +69,7 @@ public class PartyLobbyMain extends JavaPlugin implements Listener {
 			handleCrash(e);
 		} finally {
 			end = (int) (System.currentTimeMillis() - start);
-			log(String.format("%s has enabled. [%d]", References.NAME, end));
+			log(String.format("%s has enabled. [%dms]", References.NAME, end));
 		}
 	}
 
