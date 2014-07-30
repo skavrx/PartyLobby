@@ -7,9 +7,9 @@
  */
 package project.party.lobby.commands;
 
-import project.party.perms.commands.CommandFramework.Command;
-import project.party.perms.commands.CommandFramework.CommandArgs;
-import project.party.perms.commands.CommandFramework.CommandListener;
+import project.party.lobby.commands.CommandFramework.Command;
+import project.party.lobby.commands.CommandFramework.CommandArgs;
+import project.party.lobby.commands.CommandFramework.CommandListener;
 
 /**
  * Created: Jul 28, 2014 <br>

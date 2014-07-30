@@ -7,7 +7,7 @@
  */
 package project.party.lobby.handlers;
 
-import static project.party.perms.util.CrashUtil.handleCrash;
+import static project.party.lobby.util.CrashUtil.handleCrash;
 
 import java.util.UUID;
 
